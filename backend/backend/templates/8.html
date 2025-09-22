@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minimalist Resume{% if name %} — {{ name }}{% endif %}</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#fff; color:#111; margin:0; padding:40px; display:flex; justify-content:center; }
+    .resume { max-width:700px; width:100%; border:1px solid #e5e5e5; padding:32px; line-height:1.5; }
+    header { text-align:center; margin-bottom:24px; }
+    header h1 { margin-bottom:4px; font-size:28px; font-weight:700; }
+    header h2 { font-size:16px; color:#555; font-weight:400; }
+    section { margin-bottom:20px; }
+    h3 { font-size:16px; margin-bottom:8px; color:#000; border-bottom:1px solid #e5e5e5; padding-bottom:2px; }
+    ul { padding-left:16px; }
+    .meta { font-size:12px; color:#777; margin-bottom:6px; }
+    .badge { display:inline-block; padding:4px 10px; margin:2px; font-size:12px; border:1px solid #e5e5e5; border-radius:12px; }
+    footer { text-align:center; font-size:12px; color:#777; margin-top:24px; }
+  </style>
+</head>
+<body>
+  <div class="resume">
+    <header>
+      {% if name %}<h1>{{ name }}</h1>{% endif %}
+      {% if title %}<h2>{{ title }}</h2>{% endif %}
+      {% if contact %}
+      <div class="meta">
+        {% if contact.email %}Email: {{ contact.email }}{% endif %}
+        {% if contact.phone %} • Phone: {{ contact.phone }}{% endif %}
+        {% if contact.location %} • {{ contact.location }}{% endif %}
+        {% if contact.linkedin %} • <a href="{{ contact.linkedin }}">LinkedIn</a>{% endif %}
+        {% if contact.github %} • <a href="{{ contact.github }}">GitHub</a>{% endif %}
+      </div>
+      {% endif %}
+    </header>
+
+    {% if summary %}
+    <section>
+      <h3>Summary</h3>
+      <p>{{ summary }}</p>
+    </section>
+    {% endif %}
+
+    {% if experience %}
+    <section>
+      <h3>Experience</h3>
+      {% for job in experience %}
+      <article>
+        <h4>
+          {% if job.title %}{{ job.title }}{% endif %}
+          {% if job.company %} — {{ job.company }}{% endif %}
+        </h4>
+        <div class="meta">
+          {% if job.location %}{{ job.location }}{% endif %}
+          {% if job.start or job.end %} •
+            {% if job.start %}{{ job.start }}{% endif %}
+            {% if job.end %} – {{ job.end }}{% endif %}
+          {% endif %}
+        </div>
+        {% if job.bullets %}
+        <ul>
+          {% for bullet in job.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if education %}
+    <section>
+      <h3>Education</h3>
+      {% for edu in education %}
+      <p>
+        {% if edu.degree %}<strong>{{ edu.degree }}</strong>{% endif %}
+        {% if edu.institution %}, {{ edu.institution }}{% endif %}
+        {% if edu.start or edu.end %}
+          , {% if edu.start %}{{ edu.start }}{% endif %}
+          {% if edu.end %}– {{ edu.end }}{% endif %}
+        {% endif %}
+        <br>
+        <span class="meta">
+          {% if edu.notes %}{{ edu.notes }}{% endif %}
+        </span>
+      </p>
+      {% if edu.bullets %}
+      <ul>
+        {% for bullet in edu.bullets %}
+        <li>{{ bullet }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if skills %}
+    <section>
+      <h3>Skills</h3>
+      {% for skill in skills %}
+      <div class="badge">{{ skill }}</div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if projects %}
+    <section>
+      <h3>Projects</h3>
+      {% for project in projects %}
+      <div>
+        {% if project.name %}<strong>{{ project.name }}</strong>{% endif %}
+        {% if project.description %}: {{ project.description }}{% endif %}<br>
+        <span class="meta">
+          {% if project.tech %}
+            
+            {% if project.tech is string %}
+              {{ project.tech }}
+            {% else %}
+              {{ project.tech | join(', ') }}
+            {% endif %}
+          {% endif %}
+          {% if project.link %} • <a href="{{ project.link }}">Source</a>{% endif %}
+        </span>
+        {% if project.bullets %}
+        <ul>
+          {% for bullet in project.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if certifications %}
+    <section>
+      <h3>Certifications</h3>
+      {% for cert in certifications %}
+      <div class="badge">{{ cert }}</div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if languages %}
+    <section>
+      <h3>Languages</h3>
+      {% for lang in languages %}
+      <div class="badge">{{ lang }}</div>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if volunteer %}
+    <section>
+      <h3>Volunteer</h3>
+      <ul>
+        {% for v in volunteer %}
+        <li>{{ v }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    <footer>
+      References available upon request • Updated: {{ update_date or "Sep 21, 2025" }}
+    </footer>
+  </div>
+</body>
+</html>

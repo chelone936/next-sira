@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% if name %}{{ name }} — Resume{% else %}Resume{% endif %}</title>
+  <style>
+    :root{
+      --bg:#f6f7fb; --card:#ffffff; --accent:#0b76ef; --muted:#6b7280; --glass: rgba(11,118,239,0.08);
+      --max-w:900px; --gap:18px; --radius:12px; --pad:22px;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:var(--sans); background:var(--bg); color:#0f1724; -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale; padding:32px; display:flex; align-items:center; justify-content:center;
+    }
+    .resume{
+      width:100%; max-width:var(--max-w); background:linear-gradient(180deg, rgba(255,255,255,0.98), var(--card));
+      border-radius:16px; padding:24px; box-shadow:0 10px 30px rgba(15,23,36,0.08); display:grid; gap:var(--gap);
+      grid-template-columns: 280px 1fr; align-items:start;
+    }
+    aside{
+      background:linear-gradient(180deg,var(--card), #fbfdff); border-radius:12px; padding:var(--pad); min-height:420px;
+      border:1px solid rgba(15,23,36,0.04);
+    }
+    .photo{
+      width:86px; height:86px; border-radius:50%; background:linear-gradient(135deg,var(--accent), #0ea5e9); display:flex; align-items:center;
+      justify-content:center; color:white; font-weight:700; font-size:28px; margin-bottom:12px;
+      box-shadow: 0 6px 20px rgba(11,118,239,0.12);
+    }
+    h1{font-size:20px; margin:0}
+    .title{color:var(--muted); font-weight:600; font-size:12px; margin-top:6px}
+    .contact{margin-top:18px; display:flex; flex-direction:column; gap:10px; font-size:13px; color:var(--muted)}
+    .contact a{color:inherit; text-decoration:none}
+    .section-title{display:flex; align-items:center; gap:10px; margin-bottom:10px; margin-top:6px}
+    .pill{background:var(--glass); color:var(--accent); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600}
+    .skills{display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; margin-top:10px}
+    .skill{background:#f3f6ff; padding:8px 10px; border-radius:8px; font-size:13px}
+    main{padding:var(--pad); background:transparent}
+    .headline{display:flex; align-items:baseline; justify-content:space-between; gap:12px}
+    .summary{margin-top:12px; color:#172031; line-height:1.45}
+    .experience{margin-top:18px; display:flex; flex-direction:column; gap:14px}
+    .job{padding:14px; border-radius:10px; background:linear-gradient(180deg, rgba(11,118,239,0.02), rgba(11,118,239,0.00)); border:1px solid rgba(11,118,239,0.06)}
+    .job h3{margin:0; font-size:15px}
+    .job .meta{font-size:13px; color:var(--muted); margin-top:6px}
+    .job ul{margin:8px 0 0 18px}
+    .edu, .projects{margin-top:18px}
+    .project{padding:10px 12px; border-radius:8px; background:#fff; border:1px solid rgba(15,23,36,0.04)}
+    .tools{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tool{font-size:12px; padding:6px 8px; border-radius:8px; background:#fafbff; color:#233; border:1px solid rgba(15,23,36,0.03)}
+    @media (max-width:840px){
+      .resume{grid-template-columns: 1fr; padding:18px}
+      aside{order:2}
+      main{order:1}
+    }
+    @media print{
+      body{background:white; padding:0}
+      .resume{box-shadow:none; background:white; max-width:100%; border-radius:0; padding:12px; grid-template-columns: 240px 1fr}
+      .photo{box-shadow:none}
+      .pill{display:none}
+      a::after{content:""}
+      .job, .project{border:1px solid rgba(0,0,0,0.06)}
+    }
+    .muted{color:var(--muted)}
+    .right{color:var(--muted); font-size:13px}
+    .badge{display:inline-block; background:#f3f6ff; border:1px solid #e5e7eb; padding:4px 8px; font-size:12px; border-radius:8px; margin:2px}
+  </style>
+</head>
+<body>
+  <section class="resume" aria-label="Resume">
+    <aside>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="photo">{% if initials %}{{ initials }}{% else %}JA{% endif %}</div>
+        <div>
+          {% if name %}<h1>{{ name }}</h1>{% endif %}
+          {% if title %}<div class="title">{{ title }}</div>{% endif %}
+        </div>
+      </div>
+      {% if contact %}
+      <div class="contact">
+        {% if contact.email %}<div><strong>Email:</strong> {{ contact.email }}</div>{% endif %}
+        {% if contact.phone %}<div><strong>Phone:</strong> {{ contact.phone }}</div>{% endif %}
+        {% if contact.location %}<div><strong>Location:</strong> {{ contact.location }}</div>{% endif %}
+        {% if contact.portfolio %}<div><strong>Portfolio:</strong> {{ contact.portfolio }}</div>{% endif %}
+        {% if contact.linkedin %}<div><strong>LinkedIn:</strong> <a href="{{ contact.linkedin }}">{{ contact.linkedin }}</a></div>{% endif %}
+        {% if contact.github %}<div><strong>GitHub:</strong> <a href="{{ contact.github }}">{{ contact.github }}</a></div>{% endif %}
+      </div>
+      {% endif %}
+
+      {% if skills %}
+      <div style="margin-top:18px">
+        <div class="section-title"><div class="pill">Skills</div></div>
+        <div class="skills">
+          {% for skill in skills %}
+          <div class="skill">{{ skill }}</div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if tools %}
+      <div style="margin-top:18px">
+        <div class="section-title"><strong>Tools</strong></div>
+        <div class="tools">
+          {% for tool in tools %}
+          <div class="tool">{{ tool }}</div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if languages %}
+      <div style="margin-top:18px">
+        <div class="section-title"><strong>Languages</strong></div>
+        {% for lang in languages %}
+        <div class="muted">{{ lang }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if certifications %}
+      <div style="margin-top:18px">
+        <div class="section-title"><strong>Certifications</strong></div>
+        <div>
+          {% for cert in certifications %}
+          <div class="badge">{{ cert }}</div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if volunteer %}
+      <div style="margin-top:18px">
+        <div class="section-title"><strong>Volunteer</strong></div>
+        <ul>
+          {% for v in volunteer %}
+          <li>{{ v }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </aside>
+
+    <main>
+      <div class="headline">
+        <div>
+          {% if headline %}
+          <div style="display:flex; gap:10px; align-items:center">
+            <h2 style="margin:0">{{ headline }}</h2>
+            {% if years %}<span class="right">{{ years }}</span>{% endif %}
+          </div>
+          {% endif %}
+          {% if subheadline %}<div class="muted">{{ subheadline }}</div>{% endif %}
+        </div>
+        {% if open_to_opportunities %}<div class="pill">Open to opportunities</div>{% endif %}
+      </div>
+
+      {% if summary %}
+      <p class="summary">{{ summary }}</p>
+      {% endif %}
+
+      {% if experience %}
+      <section class="experience" aria-label="Experience">
+        <div style="display:flex; justify-content:space-between; align-items:center">
+          <h3 style="margin:0">Experience</h3>
+          <div class="muted">Selected roles</div>
+        </div>
+        {% for job in experience %}
+        <article class="job">
+          <h3>
+            {% if job.title %}{{ job.title }}{% endif %}
+            {% if job.company %} — {{ job.company }}{% endif %}
+          </h3>
+          <div class="meta">
+            {% if job.location %}{{ job.location }}{% endif %}
+            {% if job.start or job.end %} •
+              {% if job.start %}{{ job.start }}{% endif %}
+              {% if job.end %} – {{ job.end }}{% endif %}
+            {% endif %}
+            {% if job.notes %}<span style="margin-left:12px; color:var(--muted)">{{ job.notes }}</span>{% endif %}
+          </div>
+          {% if job.bullets %}
+          <ul>
+            {% for bullet in job.bullets %}
+            <li>{{ bullet }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </article>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if projects %}
+      <section class="projects">
+        <div class="section-title"><strong>Projects</strong></div>
+        {% for project in projects %}
+        <div class="project">
+          {% if project.name %}<strong>{{ project.name }}</strong>{% endif %}
+          {% if project.description %} — {{ project.description }}{% endif %}
+          {% if project.tech %}
+            <span class="muted">
+              {% if project.tech is string %}
+                {{ project.tech }}
+              {% else %}
+                {{ project.tech | join(', ') }}
+              {% endif %}
+            </span>
+          {% endif %}
+          {% if project.link %} • <a href="{{ project.link }}">Source</a>{% endif %}
+          {% if project.bullets %}
+          <ul>
+            {% for bullet in project.bullets %}
+            <li>{{ bullet }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      {% if education %}
+      <section class="edu">
+        <div class="section-title"><strong>Education</strong></div>
+        {% for edu in education %}
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:12px">
+          <div>
+            {% if edu.degree %}<div><strong>{{ edu.degree }}</strong></div>{% endif %}
+            {% if edu.institution %}<div class="muted">{{ edu.institution }}</div>{% endif %}
+            {% if edu.start or edu.end %}
+              <div class="muted">
+                {% if edu.start %}{{ edu.start }}{% endif %}
+                {% if edu.end %}– {{ edu.end }}{% endif %}
+              </div>
+            {% endif %}
+            {% if edu.notes %}<div class="muted">{{ edu.notes }}</div>{% endif %}
+          </div>
+          {% if edu.gpa %}<div class="muted">GPA: {{ edu.gpa }}</div>{% endif %}
+        </div>
+        {% if edu.bullets %}
+        <ul>
+          {% for bullet in edu.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      <footer style="margin-top:20px; display:flex; justify-content:space-between; align-items:center">
+        <div class="muted">References available upon request</div>
+        <div class="muted">Updated: {{ update_date or "Sep 21, 2025" }}</div>
+      </footer>
+    </main>
+  </section>
+</body>
+</html>

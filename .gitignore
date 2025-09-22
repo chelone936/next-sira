@@ -1,0 +1,10 @@
+jobs_output.json
+jobs_raw_effoysira.json
+jobs_raw_backup.json
+jobs_raw_haerejobs.json
+jobs_raw_kebenajobs.json
+jobs_raw_ethiojobs.json
+backend\backend\celerybeat-schedule.bak
+backend\backend\celerybeat-schedule.dat
+backend\backend\celerybeat-schedule.dir
+backend\backend\db.sqlite3

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+  <style>
+    @page {
+      margin: 36pt;
+    }
+
+    :root {
+      --accent: #E86E5A;
+      --sidebar-bg: #F8F4F3;
+      --base-font-size: 9pt;
+      --name-size: 22pt;
+      --title-size: 11pt;
+      --rhythm: 4pt;
+      --sidebar-width: 28%;
+      --main-width: 68%;
+    }
+
+    *, *:before, *:after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: var(--base-font-size);
+      line-height: 1.12;
+      color: #111;
+    }
+
+    .m-0 { margin: 0; }
+    .mb-1 { margin-bottom: 4pt; }
+    .mb-2 { margin-bottom: 8pt; }
+    .p-1 { padding: 4pt; }
+    .p-2 { padding: 8pt; }
+
+    .container { width: 100%; }
+    .main {
+        width: 68%;
+        float: left;
+        margin-right: 4%;
+    }
+    .sidebar {
+        width: 28%;
+        float: right;
+        background: var(--sidebar-bg);
+        padding: 8pt;
+    }
+
+    h1.name {
+      font-size: var(--name-size);
+      margin: 0 0 4pt 0;
+      font-weight: 700;
+    }
+
+    h2.title {
+      font-size: var(--title-size);
+      margin: 0 0 4pt 0;
+      font-weight: 500;
+    }
+
+    h2.section {
+      font-size: 10.5pt;
+      letter-spacing: 0.5px;
+      font-variant: small-caps;
+      margin: 8pt 0 4pt 0;
+      border-bottom: 1px solid #DDDDDD;
+      padding-bottom: 4pt;
+    }
+
+    .skill-chip {
+      display: inline-block;
+      padding: 3pt 7pt;
+      margin: 2pt 4pt;
+      border: 1px solid #CCCCCC;
+      border-radius: 3px;
+      font-size: 9pt;
+      vertical-align: middle;
+    }
+
+    .job {
+        margin-bottom: 12pt; /* Consistent spacing below each job */
+    }
+    .job-header {
+      font-size: 9pt;
+      margin-bottom: 2pt;
+    }
+    .bullets {
+      margin: 0 0 calc(var(--rhythm) * 1) 0;
+      padding-left: 12pt;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2pt 6pt;
+      font-size: 9pt;
+      border-radius: 3px;
+      background: #EFEFEF;
+      margin-left: 6pt;
+    }
+
+    .contact {
+      margin-bottom: 8pt;
+    }
+
+    .project-callout {
+      border: 1px solid #DDD;
+      padding: 6pt;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main">
+      <h1 class="name">Edeal Aschalew</h1>
+      <h2 class="title"></h2>
+      <div class="contact">
+        +251911617905 · edealaschalew05@gmail.com · linkedin.com/in/edealasc · github.com/edealasc
+      </div>
+      <section class="section-block">
+        <h2 class="section">Summary</h2>
+        <p class="mb-1">A highly motivated and skilled Information Systems student at Addis Ababa University with a GPA of 3.89/4.0. Proven ability to develop innovative solutions through participation in hackathons and projects, focusing on AI-powered applications and full-stack web development.</p>
+      </section>
+      <section class="section-block">
+        <h2 class="section">Experience</h2>
+        <div class="job">
+          <div class="job-header"><strong>Edon Academy</strong> — Coorindator & Volunteer Instructor · <span class="dates">April 2022–February 2023</span> · <span class="location"></span></div>
+          <ul class="bullets">
+            <li>Taught basic computer programming with Python for <strong>100+</strong> high school students.</li>
+            <li>Conducted bi-weekly workshops and coding challenges to explain complex concepts.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="section-block">
+        <h2 class="section">Projects</h2>
+        <div class="job">
+          <div class="job-header"><strong>Roha Events – Event Discovery & Management Platform</strong> · <span class="dates"></span> · <span class="location"></span></div>
+          <ul class="bullets">
+            <li>Won <strong>2nd Place</strong> at Google Developers Hackathon 2024.</li>
+            <li>Built a recommendation system and AI assistant that suggested events based on user preferences.</li>
+            <li>Integrated JWT-based authentication for secure event booking and user profiles.</li>
+            <li>Tech: Python, Django, PostgreSQL, Next.js.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-header"><strong>Shemeta – AI-Powered Crop Recommendation & Marketplace</strong> · <span class="dates"></span> · <span class="location"></span></div>
+          <ul class="bullets">
+            <li>Won <strong>2nd Place</strong> at Reboot the Earth 2025 (FAO & Ministry of Innovation).</li>
+            <li>Designed a prototype ML model combining satellite imagery and market price data.</li>
+            <li>Built marketplace features connecting farmers directly with buyers after harvest.</li>
+            <li>Implemented multilingual support (Amharic, Oromo, Tigrinya).</li>
+            <li>Tech: Django, SQLite, Next.js, TensorFlow.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-header"><strong>Next Sira – AI-Powered Job Application Assistant</strong> · <span class="dates"></span> · <span class="location"></span></div>
+          <ul class="bullets">
+            <li>Developed an AI assistant to streamline job hunting by summarizing listings.</li>
+            <li>Implemented embedding-based matching to recommend the most relevant opportunities.</li>
+            <li>Automated resume tailoring and generated personalized emails.</li>
+            <li>Deployed as a full-stack web app, gaining end-to-end AI product development experience.</li>
+            <li>Tech: Next.js, Django, Python, LLMs, Web Scraping, Automation Scripts.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="section-block">
+        <h2 class="section">Education</h2>
+        <div class="job">
+          <div class="job-header"><strong>Addis Ababa University</strong> · <span class="dates">Expected Graduation: June 2027</span> · <span class="location"></span></div>
+          <ul class="bullets">
+            <li>Bachelor of Science in Information Systems | GPA: <strong>3.89/4.0</strong></li>
+            <li>Courses: Data Structures and Algorithms, Information Storage and Retrieval, Advanced Database Systems...</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <aside class="sidebar">
+      <section class="section-block">
+        <h2 class="section">Skills</h2>
+        <span class="skill-chip">Java</span>
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">Javascript</span>
+        <span class="skill-chip">Typescript</span>
+        <span class="skill-chip">C++</span>
+        <span class="skill-chip">SQL</span>
+        <span class="skill-chip">HTML</span>
+        <span class="skill-chip">CSS</span>
+        <span class="skill-chip">React</span>
+        <span class="skill-chip">NextJS</span>
+        <span class="skill-chip">Djagno</span>
+        <span class="skill-chip">Flask</span>
+        <span class="skill-chip">PostgreSQL</span>
+        <span class="skill-chip">Tensorflow</span>
+        <span class="skill-chip">PyTorch</span>
+        <span class="skill-chip">LangChain</span>
+        <span class="skill-chip">CrewAI</span>
+        <span class="skill-chip">Docker</span>
+        <span class="skill-chip">Postman</span>
+        <span class="skill-chip">Git</span>
+        <span class="skill-chip">Selenium</span>
+        <span class="skill-chip">Supabase</span>
+        <span class="skill-chip">JupyterNotebook</span>
+      </section>
+      <section class="section-block">
+        <h2 class="section">Languages</h2>
+        <span class="skill-chip">Amharic</span>
+        <span class="skill-chip">English</span>
+      </section>
+      <section class="section-block">
+        <h2 class="section">Links</h2>
+        <p><a href="linkedin.com/in/edealasc">LinkedIn</a></p>
+        <p><a href="github.com/edealasc">GitHub</a></p>
+      </section>
+    </aside>
+  </div>
+</body>
+</html>
